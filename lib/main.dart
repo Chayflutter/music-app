@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:myapp/pages/homepage.dart';
+import 'package:permission_handler/permission_handler.dart';
 // import 'package:permission_handler/permission_handler.dart';
 
 void main() {
@@ -10,6 +11,11 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
+  Future<bool> checkstatus()async{
+        var status = await Permission.storage.request();
+        return status.isGranted;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +27,15 @@ class MyApp extends StatelessWidget {
                 primary: Colors.grey.shade600,
                 secondary: Colors.grey.shade800,
                 inversePrimary: Colors.grey.shade300)),
-        home: const Homepage());
+        home: FutureBuilder<bool>(
+      future: checkstatus(),
+      builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+        if (snapshot.data == true) {
+          return Homepage();
+        } else {
+          return Scaffold(body: Text('Something went wrong'),);
+        }
+      },
+    ));
   }
 }
