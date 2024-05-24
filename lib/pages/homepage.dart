@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/components/myDrawer.dart';
+import 'package:myapp/models/playlist.dart';
+import 'package:myapp/models/songs.dart';
+import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -9,8 +12,11 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+
+  
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
@@ -27,7 +33,17 @@ class _HomepageState extends State<Homepage> {
         
       ),
       drawer: Mydrawer(),
-      body: Text('text'),
+      body: Consumer<PlaylistProvider>(builder: (context, value,child){
+        value.task();
+        final List<Songs> playlist = value.playlist;
+        return ListView.builder(
+          itemCount: playlist.length,
+          itemBuilder: (context, index){
+            final Songs song = playlist[index];
+            return ListTile(title: Text(song.songName),);
+          },
+        );
+      },),
       
     );
   }
