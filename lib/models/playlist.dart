@@ -4,7 +4,7 @@ import 'package:myapp/models/songs.dart';
 
 class PlaylistProvider extends ChangeNotifier {
   List<Songs> _playlist = [];
-
+  bool truth = false;
   task() {
     var directory = Directory('/storage/emulated/0/');
     List<FileSystemEntity> files;
@@ -12,12 +12,16 @@ class PlaylistProvider extends ChangeNotifier {
     for (FileSystemEntity entity in files) {
       String path = entity.path;
       if (path.endsWith('.mp3')) {
+        if(truth==false){
+
         _playlist.add(
           Songs(
               songName: entity.path.split('/').last,
               songPath: entity.path,
               imagePath: 'assets/images/album.jpg'),
         );
+        truth = true;
+        }
       }
     }
   }
