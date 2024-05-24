@@ -11,18 +11,54 @@ class SongPage extends StatelessWidget {
     return Consumer<PlaylistProvider>(
         builder: (context, value, child) => Scaffold(
               backgroundColor: Theme.of(context).colorScheme.background,
-              
               body: SafeArea(
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 25, right: 25, bottom: 25),
+                  padding:
+                      const EdgeInsets.only(left: 25, right: 25, bottom: 25),
                   child: Column(
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                        IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back)),
-                        Text('P L A Y L I S T'),
-                        IconButton(onPressed: (){}, icon: Icon(Icons.menu))
+                          IconButton(
+                              onPressed: () {}, icon: Icon(Icons.arrow_back)),
+                          Text('P L A Y L I S T'),
+                          IconButton(onPressed: () {}, icon: Icon(Icons.menu))
+                        ],
+                      ),
+                      NeuBox(
+                          child: Column(
+                        children: [
+                          ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.asset('assets/images/album.jpg')),
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('data', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),),
+                                    Text('data'),
+                                    ],
+                                ),
+
+                                Icon(Icons.favorite, color: Colors.red,)
+                              ],
+                            ),
+                          ),
+
+
+                        ],
+                      )
+                      
+                      )
+
+                      ,
+                      Row(children: [
+                        
                       ],)
                     ],
                   ),
