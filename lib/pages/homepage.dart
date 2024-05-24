@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/components/myDrawer.dart';
 import 'package:myapp/models/playlist.dart';
 import 'package:myapp/models/songs.dart';
+import 'package:myapp/pages/song_page.dart';
 import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
@@ -13,16 +14,29 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
 
-  
+  late final dynamic playlistProvider;
+
+  @override
+  void initState(){
+    super.initState();
+
+    playlistProvider = Provider.of<PlaylistProvider>(context,listen: false);
+  }
+
+
+  void gotosong(int songIndex){
+    playlistProvider.currentSongIndex = songIndex;
+
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>SongPage()));
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
         title: Text('P L A Y L I S T'),
         backgroundColor: Colors.black.withOpacity(0.5),
-        
         centerTitle: true,
         toolbarHeight: 60.2,
         shape: const RoundedRectangleBorder(
@@ -30,21 +44,28 @@ class _HomepageState extends State<Homepage> {
               bottomRight: Radius.circular(25),
               bottomLeft: Radius.circular(25)),
         ),
-        
       ),
       drawer: Mydrawer(),
-      body: Consumer<PlaylistProvider>(builder: (context, value,child){
-        value.task();
-        final List<Songs> playlist = value.playlist;
-        return ListView.builder(
-          itemCount: playlist.length,
-          itemBuilder: (context, index){
-            final Songs song = playlist[index];
-            return ListTile(title: Text(song.songName),);
-          },
-        );
-      },),
-      
+      body: Consumer<PlaylistProvider>(
+        
+        builder: (context, value, child) {
+          value.task();
+          final List<Songs> playlist = value.playlist;
+          return ListView.builder(
+            itemCount: playlist.length,
+            itemBuilder: (context, index) {
+              final Songs song = playlist[index];
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text(song.songName),
+                  leading: Image.asset(song.imagePath),onTap: ()=>gotosong(index),
+                ),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }

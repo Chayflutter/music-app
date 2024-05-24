@@ -1,15 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:myapp/models/songs.dart';
 
 class PlaylistProvider extends ChangeNotifier {
-  List<Songs> _playlist = [
-    Songs(
-        songName: 'songName',
-        songPath: 'songPath',
-        imagePath: 'assets/images/album.jpg'),
-  ];
+  List<Songs> _playlist = [];
 
   task() {
     var directory = Directory('/storage/emulated/0/');
@@ -20,7 +14,7 @@ class PlaylistProvider extends ChangeNotifier {
       if (path.endsWith('.mp3')) {
         _playlist.add(
           Songs(
-              songName: 'testing',
+              songName: entity.path.split('/').last,
               songPath: entity.path,
               imagePath: 'assets/images/album.jpg'),
         );
@@ -32,4 +26,9 @@ class PlaylistProvider extends ChangeNotifier {
 
   List<Songs> get playlist => _playlist;
   int? get currentSongIndex => _currentSongIndex;
+
+  set currentSongIndex(int? newIndex){
+    _currentSongIndex = newIndex;
+    notifyListeners();
+  }
 }
