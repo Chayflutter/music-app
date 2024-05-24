@@ -5,7 +5,7 @@ import 'package:myapp/models/songs.dart';
 class PlaylistProvider extends ChangeNotifier{
   
   final List <Songs> _playlist = [
-    Songs(songName: 'songName', songPath: 'songPath', imagePath: 'assets/album.jpg'),
+    Songs(songName: 'songName', songPath: 'songPath', imagePath: 'assets/images/album.jpg'),
   ];
 
 
