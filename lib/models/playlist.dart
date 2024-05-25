@@ -56,8 +56,43 @@ void pause ()async{
 void resume ()async{
   
   await _audioPlayer.resume();
-  _isPlaying = false;
+  _isPlaying = true;
   notifyListeners();
+}
+void pauseOrResume ()async{
+  if(_isPlaying){
+    pause();
+  }else{resume();}
+}
+void seek (Duration position)async{
+  
+  await _audioPlayer.seek(position);
+}
+void playNextSong ()async{
+  
+  if(_currentSongIndex != null){
+    if(_currentSongIndex! < _playlist.length-1){
+      _currentSongIndex = _currentSongIndex! + 1;
+    }else{
+
+      _currentSongIndex = 0;
+    }
+  }
+}
+void playPreviousSong ()async{
+  
+  if(_currentDuration.inSeconds >2){
+    if(_currentSongIndex! < _playlist.length-1){
+      
+    }else{
+
+      if(_currentSongIndex!>0){
+        currentSongIndex = _currentSongIndex!-1;
+      }else{
+        currentSongIndex = _playlist.length-1;
+      }
+    }
+  }
 }
 
 void listenToDuration(){
@@ -71,7 +106,7 @@ _audioPlayer.onPositionChanged.listen((event){
   notifyListeners();
 });
 
-_audioPlayer.onPlayerComplete.listen((event){
+_audioPlayer.onPlayerComplete.listen((event){playNextSong();
 
 });
 }
