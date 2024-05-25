@@ -14,7 +14,7 @@ final double radius;
           borderRadius:BorderRadius.circular(radius) ,
           boxShadow: [
             BoxShadow(
-                color: Colors.grey.shade800,
+                color: Colors.black,
                 blurRadius: 15,
                 offset: const Offset(4, 4)),
             BoxShadow(

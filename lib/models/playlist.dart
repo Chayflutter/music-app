@@ -83,7 +83,7 @@ void playPreviousSong ()async{
   
   if(_currentDuration.inSeconds >2){
     if(_currentSongIndex! < _playlist.length-1){
-      
+      seek(Duration.zero);
     }else{
 
       if(_currentSongIndex!>0){
