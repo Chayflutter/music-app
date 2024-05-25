@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/models/songs.dart';
 
 class PlaylistProvider extends ChangeNotifier {
-  List<Songs> _playlist = [];
+  final List<Songs> _playlist = [];
   bool truth = false;
   task() {
     var directory = Directory('/storage/emulated/0/');

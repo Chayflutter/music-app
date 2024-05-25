@@ -10,20 +10,20 @@ final double radius;
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.background,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius:BorderRadius.circular(radius) ,
           boxShadow: [
-            BoxShadow(
+            const BoxShadow(
                 color: Colors.black,
                 blurRadius: 15,
-                offset: const Offset(4, 4)),
-            BoxShadow(
+                offset: Offset(4, 4)),
+             BoxShadow(
                 color: Colors.grey.shade900,
                 blurRadius: 15,
-                offset: const Offset(-4, -4))
+                offset:const  Offset(-4, -4))
           ]),
+      padding: const EdgeInsets.all(12),
       child: child,
-      padding: EdgeInsets.all(12),
     );
   }
 }

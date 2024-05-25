@@ -21,7 +21,7 @@ String formatTime(Duration duration){
           return Scaffold(
             
 
-              backgroundColor: Theme.of(context).colorScheme.background,
+              backgroundColor: Theme.of(context).colorScheme.surface,
               body: SafeArea(
                 child: Padding(
                   padding:
@@ -33,9 +33,9 @@ String formatTime(Duration duration){
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                              onPressed: () => Navigator.pop(context), icon: Icon(Icons.arrow_back)),
-                          Text('P L A Y L I S T'),
-                          IconButton(onPressed: () {}, icon: Icon(Icons.menu))
+                              onPressed: () => Navigator.pop(context), icon: const Icon(Icons.arrow_back)),
+                          const Text('P L A Y L I S T'),
+                          IconButton(onPressed: () {}, icon:const Icon(Icons.menu))
                         ],
                       ),
                       const SizedBox(height: 25,),
@@ -60,7 +60,7 @@ String formatTime(Duration duration){
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20),
                                     ),
-                                    Text('Unknown'),
+                                    const Text('Unknown'),
                                   ],
                                 ),
                                 const Icon(
@@ -78,13 +78,13 @@ String formatTime(Duration duration){
                       Column(
                         children: [
                            Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 25.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 25.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(formatTime(value.currentDuration)),
-                                Icon(Icons.shuffle),
-                                Icon(Icons.repeat),
+                                const Icon(Icons.shuffle),
+                                const Icon(Icons.repeat),
                                 Text(formatTime(value.totalDuration)),
                               ],
                             ),

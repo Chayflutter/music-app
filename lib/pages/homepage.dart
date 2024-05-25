@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/components/myDrawer.dart';
+import 'package:myapp/components/_myDrawer.dart';
 import 'package:myapp/models/playlist.dart';
 import 'package:myapp/models/songs.dart';
 import 'package:myapp/pages/song_page.dart';
@@ -27,15 +27,15 @@ class _HomepageState extends State<Homepage> {
   void gotosong(int songIndex){
     playlistProvider.currentSongIndex = songIndex;
 
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>SongPage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>const SongPage()));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        title: Text('P L A Y L I S T'),
+        title: const Text('P L A Y L I S T'),
         backgroundColor: Colors.black.withOpacity(0.5),
         centerTitle: true,
         toolbarHeight: 60.2,
@@ -45,7 +45,7 @@ class _HomepageState extends State<Homepage> {
               bottomLeft: Radius.circular(25)),
         ),
       ),
-      drawer: Mydrawer(),
+      drawer: const Mydrawer(),
       body: Consumer<PlaylistProvider>(
         
         builder: (context, value, child) {

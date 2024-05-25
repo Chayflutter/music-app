@@ -34,9 +34,9 @@ class MyApp extends StatelessWidget {
           future: checkstatus(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
             if (snapshot.data == true) {
-              return Homepage();
+              return const Homepage();
             } else {
-              return Scaffold(
+              return const Scaffold(
                 body: Text('Something went wrong'),
               );
             }
