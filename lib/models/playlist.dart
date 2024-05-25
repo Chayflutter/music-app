@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/models/songs.dart';
 
@@ -27,6 +28,53 @@ class PlaylistProvider extends ChangeNotifier {
   }
 
   int? _currentSongIndex;
+
+
+final AudioPlayer _audioPlayer = AudioPlayer();
+
+Duration _currentDuration = Duration.zero;
+Duration _totalDuration = Duration.zero;
+
+
+PlaylistProvider(){listenToDuration();}
+
+bool _isPlaying = false;
+
+void play ()async{
+  final String path = _playlist[currentSongIndex!].songPath;
+  await _audioPlayer.stop();
+  await _audioPlayer.play(AssetSource(path));
+  _isPlaying = true;
+  notifyListeners();
+}
+void pause ()async{
+  
+  await _audioPlayer.pause();
+  _isPlaying = false;
+  notifyListeners();
+}
+void resume ()async{
+  
+  await _audioPlayer.resume();
+  _isPlaying = false;
+  notifyListeners();
+}
+
+void listenToDuration(){
+_audioPlayer.onDurationChanged.listen((event){
+  _totalDuration = event;
+  notifyListeners();
+});
+
+_audioPlayer.onPositionChanged.listen((event){
+  _currentDuration = event;
+  notifyListeners();
+});
+
+_audioPlayer.onPlayerComplete.listen((event){
+
+});
+}
 
   List<Songs> get playlist => _playlist;
   int? get currentSongIndex => _currentSongIndex;
