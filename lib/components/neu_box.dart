@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 class NeuBox extends StatelessWidget {
   final Widget? child;
 
-  const NeuBox({super.key, required this.child});
+final double radius;
+  const NeuBox({super.key, required this.child, required this.radius});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.background,
-          borderRadius:BorderRadius.circular(12) ,
+          borderRadius:BorderRadius.circular(radius) ,
           boxShadow: [
             BoxShadow(
                 color: Colors.grey.shade800,
