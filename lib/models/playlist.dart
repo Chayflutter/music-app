@@ -43,7 +43,7 @@ bool _isPlaying = false;
 void play ()async{
   final String path = _playlist[currentSongIndex!].songPath;
   await _audioPlayer.stop();
-  await _audioPlayer.play(AssetSource(path));
+  await _audioPlayer.play(DeviceFileSource(path));
   _isPlaying = true;
   notifyListeners();
 }
@@ -113,9 +113,17 @@ _audioPlayer.onPlayerComplete.listen((event){playNextSong();
 
   List<Songs> get playlist => _playlist;
   int? get currentSongIndex => _currentSongIndex;
+  bool get isPlaying => _isPlaying;
+  Duration get currentDuration => _currentDuration;
+  Duration get totalDuration => _totalDuration;
+
 
   set currentSongIndex(int? newIndex){
     _currentSongIndex = newIndex;
+
+    if(newIndex != null){
+      play();
+    }
     notifyListeners();
   }
 }

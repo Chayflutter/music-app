@@ -89,10 +89,13 @@ class SongPage extends StatelessWidget {
                                     enabledThumbRadius: 7)),
                             child: Slider(
                               min: 0,
-                              max: 100,
-                              value: 50,
+                              max: value.totalDuration.inSeconds.toDouble(),
+                              value: value.currentDuration.inSeconds.toDouble(),
                               activeColor: Colors.deepPurpleAccent,
-                              onChanged: (value) {},
+                              onChanged: (double thing) {},
+                              onChangeEnd: (double thing) {
+                                value.seek(Duration(seconds: thing.toInt()));
+                              },
                             ),
                           )
                         ],
@@ -104,22 +107,22 @@ class SongPage extends StatelessWidget {
                         children: [
                           Expanded(
                               child: GestureDetector(
-                                  onTap: () {},
+                                  onTap: value.playPreviousSong,
                                   child:
-                                      NeuBox(child: Icon(Icons.skip_previous), radius: 25,))),
+                                      const NeuBox( radius: 25,child: Icon(Icons.skip_previous)))),
                           const SizedBox(width: 25,),
                           Expanded(
                             flex: 2,
                               child: GestureDetector(
-                                  onTap: () {},
+                                  onTap: value.pauseOrResume,
                                   child:
-                                      NeuBox(child: Icon(Icons.play_arrow) ,radius: 15))),
+                                       NeuBox(radius: 15,child: Icon(value.isPlaying? Icons.pause :Icons.play_arrow)))),
                           const SizedBox(width: 25,),
                           Expanded(
                               child: GestureDetector(
-                                  onTap: () {},
+                                  onTap: value.playNextSong,
                                   child:
-                                      NeuBox(child: Icon(Icons.skip_next),radius: 25))),
+                                      const NeuBox(radius: 25,child: Icon(Icons.skip_next),))),
                         ],
                       )
                     ],
