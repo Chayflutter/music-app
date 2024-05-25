@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:myapp/components/_myDrawer.dart';
 import 'package:myapp/models/playlist.dart';
@@ -23,7 +25,10 @@ class _HomepageState extends State<Homepage> {
     playlistProvider = Provider.of<PlaylistProvider>(context,listen: false);
   }
 
+void addFiles(value)async{
 
+  value.task('/storage/emulated/0/');
+}
   void gotosong(int songIndex){
     playlistProvider.currentSongIndex = songIndex;
 
@@ -49,7 +54,7 @@ class _HomepageState extends State<Homepage> {
       body: Consumer<PlaylistProvider>(
         
         builder: (context, value, child) {
-          value.task();
+          addFiles(value);
           final List<Songs> playlist = value.playlist;
           return ListView.builder(
             itemCount: playlist.length,

@@ -6,8 +6,9 @@ import 'package:myapp/models/songs.dart';
 class PlaylistProvider extends ChangeNotifier {
   final List<Songs> _playlist = [];
   bool truth = false;
-  task() {
-    var directory = Directory('/storage/emulated/0/');
+  task(appDocPath) {
+    var directory = Directory(appDocPath);
+    print(appDocPath);
     List<FileSystemEntity> files;
     files = directory.listSync(recursive: true, followLinks: false);
     for (FileSystemEntity entity in files) {
