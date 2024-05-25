@@ -9,7 +9,12 @@ class SongPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<PlaylistProvider>(
-        builder: (context, value, child) => Scaffold(
+        builder: (context, value, child) {
+          final playlist = value.playlist;
+          final currentSong = playlist[value.currentSongIndex ?? 0];
+          return Scaffold(
+            
+
               backgroundColor: Theme.of(context).colorScheme.background,
               body: SafeArea(
                 child: Padding(
@@ -34,9 +39,9 @@ class SongPage extends StatelessWidget {
                         children: [
                           ClipRRect(
                               borderRadius: BorderRadius.circular(8),
-                              child: Image.asset('assets/images/album.jpg')),
-                          const Padding(
-                            padding:  EdgeInsets.all(15.0),
+                              child: Image.asset(currentSong.imagePath)),
+                           Padding(
+                            padding: const EdgeInsets.all(15.0),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -44,15 +49,15 @@ class SongPage extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'data',
-                                      style: TextStyle(
+                                      currentSong.songName,
+                                      style:const TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20),
                                     ),
-                                    Text('data'),
+                                    Text('Unknown'),
                                   ],
                                 ),
-                                Icon(
+                                const Icon(
                                   Icons.favorite,
                                   color: Colors.red,
                                 )
@@ -121,6 +126,6 @@ class SongPage extends StatelessWidget {
                   ),
                 ),
               ),
-            ));
+            );});
   }
 }

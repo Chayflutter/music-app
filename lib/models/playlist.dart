@@ -16,7 +16,7 @@ class PlaylistProvider extends ChangeNotifier {
 
         _playlist.add(
           Songs(
-              songName: entity.path.split('/').last,
+              songName: entity.path.split('/').last.split('.').first,
               songPath: entity.path,
               imagePath: 'assets/images/album.jpg'),
         );
