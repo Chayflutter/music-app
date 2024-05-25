@@ -8,7 +8,6 @@ class PlaylistProvider extends ChangeNotifier {
   bool truth = false;
   task(appDocPath) {
     var directory = Directory(appDocPath);
-    print(appDocPath);
     List<FileSystemEntity> files;
     files = directory.listSync(recursive: true, followLinks: false);
     for (FileSystemEntity entity in files) {
