@@ -1,4 +1,3 @@
-import 'package:external_path/external_path.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/components/_myDrawer.dart';
 import 'package:myapp/models/playlist.dart';
@@ -24,10 +23,10 @@ class _HomepageState extends State<Homepage> {
     playlistProvider = Provider.of<PlaylistProvider>(context,listen: false);
   }
 
-Future<void> addFiles(value)async{
-var path = await ExternalPath.getExternalStorageDirectories();
+ addFiles(value)async{
 
-  value.task(path[0]);
+
+  value.task('/storage/emulated/0/');
 }
   void gotosong(int songIndex){
     playlistProvider.currentSongIndex = songIndex;
