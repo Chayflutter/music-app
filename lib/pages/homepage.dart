@@ -27,7 +27,7 @@ class _HomepageState extends State<Homepage> {
 Future<void> addFiles(value)async{
 var path = await ExternalPath.getExternalStorageDirectories();
 
-  value.task(path[0].toString());
+  value.task(path[0]);
 }
   void gotosong(int songIndex){
     playlistProvider.currentSongIndex = songIndex;

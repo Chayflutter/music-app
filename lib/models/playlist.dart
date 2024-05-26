@@ -1,13 +1,14 @@
 import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/models/songs.dart';
+import 'package:myapp/models/songs.dart'; 
 
 class PlaylistProvider extends ChangeNotifier {
   final List<Songs> _playlist = [];
   bool truth = false;
   task(appDocPath) {
-    var directory = Directory(appDocPath);
+    var directory = Directory(appDocPath + '/');
+    print(directory);
     List<FileSystemEntity> files;
     files = directory.listSync(recursive: true, followLinks: false);
     for (FileSystemEntity entity in files) {
